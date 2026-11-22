@@ -136,6 +136,18 @@ For the full specification, see [conventionalcommits.org](https://www.convention
 
 - Never add editor- or system-specific entries to [.gitignore](.gitignore) — those belong in the user's global gitignore at `$XDG_CONFIG_HOME/git/ignore` (see the note at the top of that file).
 
+### EditorConfig
+
+This repository uses [EditorConfig](https://editorconfig.org/) for consistent formatting across editors and IDEs. The [.editorconfig](.editorconfig) file defines:
+
+- **Line endings**: LF (Unix-style) for cross-platform compatibility
+- **Indentation**: 2 spaces for Nix, Markdown, JSON, and shell scripts
+- **Trailing whitespace**: Trimmed for code files; preserved for Markdown (where 2+ trailing spaces create hard line breaks)
+- **Final newline**: Added to all text files except JSON/lock files (where it's not required)
+- **Character encoding**: UTF-8
+
+Editors with EditorConfig support (VS Code, IntelliJ, Vim, Emacs, etc.) will automatically apply these settings. No additional tooling is required.
+
 ## Getting oriented with Nix
 
 If you need to ground answers in Nix documentation, prefer these official sources:
