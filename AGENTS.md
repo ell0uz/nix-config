@@ -41,6 +41,97 @@ Examples from this repo's history:
 
 Keep the description lowercase and imperative, and omit the scope unless it adds clarity (e.g. `feat(home-manager): add git config module`).
 
+### Detailed Conventional Commits Guidelines
+
+All commit messages MUST follow the [Conventional Commits 1.0.0 specification](https://www.conventionalcommits.org/en/v1.0.0/), which standardises the format and meaning of commit messages. Below is a detailed breakdown of the rules and structure.
+
+#### Commit Message Structure
+
+A conventional commit message has the following structure:
+
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer]
+```
+
+1. **Type** (required): A lowercase keyword indicating the *nature* of the change. Allowed types in this repo:
+   - `feat`: New features or enhancements
+   - `fix`: Bug fixes
+   - `docs`: Documentation changes
+   - `refactor`: Code restructuring without functional changes
+   - `style`: Formatting, whitespace, or code style changes
+   - `test`: Adding or modifying tests
+   - `chore`: Maintenance tasks (e.g., updating lock files, repo housekeeping)
+   - `perf`: Performance improvements
+   - `build`: Build system or external dependency changes
+   - `ci`: CI/CD pipeline changes
+
+2. **Scope** (optional): A hyphen-separated lowercase identifier (e.g., `home-manager`, `nixos`) added in parentheses after the type if the change affects a specific part of the system. Omit if the change is general.
+
+3. **Description** (required): A concise, lowercase, imperative sentence summarising the change. Start with a verb (e.g., "add", "fix", "update"). Max 72 characters.
+
+4. **Body** (optional): A detailed explanation of *why* the change was made, ideally in a new paragraph starting with "Why:". Use bullet points for lists. Wrap at 72 characters.
+
+5. **Footer** (optional): Metadata like:
+   - `Closes: #123` or `Fixes: #123` to link issues
+   - `BREAKING CHANGE: description` for backwards-incompatible changes (forces a major version bump)
+   - `Co-authored-by: Name <email>` for collaborative commits
+
+#### Core Rules
+
+- **Lowercase everything**: Types, scopes, descriptions, and body text must be lowercase (except URLs, code, or proper nouns in footers).
+- **Imperative mood**: Write descriptions as commands (e.g., "add config module", not "added config module").
+- **No trailing punctuation**: Avoid periods or other punctuation at the end of the description.
+- **Wrap lines**: Hard-wrap the body and footer at 72 columns.
+- **Separate body paragraphs**: Use a blank line between paragraphs in the body.
+- **Breaking changes**: Mention them explicitly in the footer, not just the description.
+
+#### Examples
+
+**Valid commits**:
+
+```
+feat(home-manager): add git config module
+```
+
+```
+fix: correct path for nix-darwin configuration
+
+Why: The previous path assumed a Linux structure, breaking macOS builds.
+```
+
+```
+chore: update flake.lock
+
+Why: Resolve dependency conflicts after adding a new package.
+```
+
+**Invalid commits**:
+
+```
+Feat: Add New Feature (wrong case, punctuation)
+```
+
+```
+fix(scope): description with capital letters (scope must be lowercase)
+```
+
+```
+refactor: some changes. (trailing punctuation)
+```
+
+#### Why follow this spec?
+
+- Enables automated tools to generate changelogs and version bumps (using `convco` or similar).
+- Makes git history skimmable and consistent across contributors.
+- Explicitly flags breaking changes for consumers of the configuration.
+
+For the full specification, see [conventionalcommits.org](https://www.conventionalcommits.org/en/v1.0.0/).
+
+
 ### Git hygiene
 
 - Never add editor- or system-specific entries to [.gitignore](.gitignore) — those belong in the user's global gitignore at `$XDG_CONFIG_HOME/git/ignore` (see the note at the top of that file).
