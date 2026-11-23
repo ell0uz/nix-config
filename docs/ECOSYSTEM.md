@@ -19,4 +19,4 @@ The hand-rolled pattern above needs only `flake-parts` and `import-tree` (alread
 
 ---
 
-**See also:** [Dendritic Patterns](DENDRITIC_PATTERNS.md) · [Adding Features](ADDING_FEATURES.md)
+**See also:** [Dendritic Patterns](DENDRITIC_PATTERNS.md) · [Adding Features](ADDING_FEATURES.md) · [Glossary](GLOSSARY.md)

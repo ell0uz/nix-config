@@ -146,4 +146,4 @@ Editors with EditorConfig support (VS Code, IntelliJ, Vim, Emacs, etc.) will aut
 
 ---
 
-**See also:** [Dendritic Patterns](DENDRITIC_PATTERNS.md) · [Adding Features](ADDING_FEATURES.md)
+**See also:** [Dendritic Patterns](DENDRITIC_PATTERNS.md) · [Adding Features](ADDING_FEATURES.md) · [Glossary](GLOSSARY.md)

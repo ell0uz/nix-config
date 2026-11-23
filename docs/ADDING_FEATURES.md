@@ -35,4 +35,4 @@
 
 ---
 
-**See also:** [Dendritic Patterns](DENDRITIC_PATTERNS.md) · [Ecosystem](ECOSYSTEM.md) · [Conventions](CONVENTIONS.md) · [Version Policy](upgrades/UPGRADES.md)
+**See also:** [Dendritic Patterns](DENDRITIC_PATTERNS.md) · [Ecosystem](ECOSYSTEM.md) · [Conventions](CONVENTIONS.md) · [Version Policy](upgrades/UPGRADES.md) · [Glossary](GLOSSARY.md)

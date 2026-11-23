@@ -54,4 +54,4 @@ This project is MIT-licensed — see [LICENSE.md](../LICENSE.md).
 
 ---
 
-**See also:** [Dendritic Patterns](DENDRITIC_PATTERNS.md) · [Adding Features](ADDING_FEATURES.md) · [Version Policy](upgrades/UPGRADES.md)
+**See also:** [Dendritic Patterns](DENDRITIC_PATTERNS.md) · [Adding Features](ADDING_FEATURES.md) · [Version Policy](upgrades/UPGRADES.md) · [Glossary](GLOSSARY.md)

@@ -60,4 +60,4 @@
 
 ---
 
-**See also:** [Adding Features](ADDING_FEATURES.md) · [Ecosystem](ECOSYSTEM.md) · [Version Policy](upgrades/UPGRADES.md)
+**See also:** [Adding Features](ADDING_FEATURES.md) · [Ecosystem](ECOSYSTEM.md) · [Version Policy](upgrades/UPGRADES.md) · [Glossary](GLOSSARY.md)
