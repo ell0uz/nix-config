@@ -4,7 +4,7 @@ Instructions for AI coding agents (Claude Code, Copilot, Codex, Cursor, Gemini C
 
 ## What this repo is
 
-A Nix flake that manages this user's Nix configuration, structured after the [dendritic pattern](#dendritic-configuration-pattern). [flake.nix](flake.nix) is a thin entrypoint — it wires [flake-parts](https://flake.parts/) with [import-tree](https://github.com/vic/import-tree), which auto-imports every `.nix` file under [modules/](modules/) as a flake-parts module. The configuration grows feature-by-feature as dendritic aspects.
+A Nix flake that manages this user's Nix configuration, structured after the [dendritic pattern](#dendritic-configuration-pattern). [flake.nix](flake.nix) is a thin entrypoint — it wires [flake-parts](https://flake.parts/) with [import-tree](https://github.com/denful/import-tree), which auto-imports every `.nix` file under [modules/](modules/) as a flake-parts module. The configuration grows feature-by-feature as dendritic aspects.
 
 - Do **not** invent or scaffold a directory structure ahead of time. Follow the user's lead as they add pieces, and follow the dendritic conventions below when adding modules.
 - When the flake gains outputs, verify changes with `nix flake check` and `nix build .#<output>` before committing. Format Nix (and Markdown, YAML, shell script) files with `nix fmt`, backed by [modules/formatter.nix](modules/formatter.nix).
