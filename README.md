@@ -8,4 +8,7 @@
   <a href="https://nixos.org/">
     <img src="https://img.shields.io/badge/NixOS-26.11-informational.svg?style=for-the-badge&logo=nixos&color=F2CDCD&logoColor=D9E0EE&labelColor=302D41">
   </a>
+  <a href="https://flake.parts">
+    <img src="https://img.shields.io/badge/Flake-Parts-informational.svg?style=for-the-badge&logo=nixos&color=74c7ec&logoColor=D9E0EE&labelColor=302D41">
+  </a>
 </p>
