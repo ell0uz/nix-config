@@ -7,11 +7,11 @@ Instructions for AI coding agents (Claude Code, Copilot, Codex, Cursor, Gemini C
 A Nix flake that manages this user's Nix configuration, structured after the [dendritic pattern](#dendritic-configuration-pattern). [flake.nix](flake.nix) is a thin entrypoint — it wires [flake-parts](https://flake.parts/) with [import-tree](https://github.com/vic/import-tree), which auto-imports every `.nix` file under [modules/](modules/) as a flake-parts module. The configuration grows feature-by-feature as dendritic aspects.
 
 - Do **not** invent or scaffold a directory structure ahead of time. Follow the user's lead as they add pieces, and follow the dendritic conventions below when adding modules.
-- When the flake gains outputs, verify changes with `nix flake check` and `nix build .#<output>` before committing. Format Nix files with `nix fmt` once a formatter is configured.
+- When the flake gains outputs, verify changes with `nix flake check` and `nix build .#<output>` before committing. Format Nix (and Markdown, YAML, shell script) files with `nix fmt`, backed by [modules/formatter.nix](modules/formatter.nix).
 
 ## Dendritic configuration pattern
 
-[Dendritic](https://dendrix.denful.dev/Dendritic.html) is a configuration *pattern* — a way of doing things, not a library or framework. It is aspect-oriented: configuration is organized around cross-cutting features ("aspects") rather than hosts, built on flake-parts' `flake.modules` option. [denful.dev](https://denful.dev) is the home of the ecosystem around it.
+[Dendritic](https://dendrix.denful.dev/Dendritic.html) is a configuration _pattern_ — a way of doing things, not a library or framework. It is aspect-oriented: configuration is organized around cross-cutting features ("aspects") rather than hosts, built on flake-parts' `flake.modules` option. [denful.dev](https://denful.dev) is the home of the ecosystem around it.
 
 ### How this repo wires it
 
@@ -21,6 +21,7 @@ A Nix flake that manages this user's Nix configuration, structured after the [de
 ### Aspects
 
 - Default to one feature or concern per file, named after the capability rather than the tool or host (e.g. `ssh.nix`, `fonts.nix`, not `openssh-config.nix` or `my-laptop.nix`).
+
 - A file may contribute the same aspect to several configuration **classes** — `nixos`, `darwin`, `homeManager`, or custom classes — by registering each under `flake.modules.<class>.<aspect>`:
 
   ```nix
@@ -54,7 +55,9 @@ A Nix flake that manages this user's Nix configuration, structured after the [de
 ### Sharing values
 
 - Within a file, use `let` bindings.
+
 - Across files, prefer flake-parts options or a constants aspect in a `generic` class. Prefer avoiding `specialArgs`/`extraSpecialArgs` — it is the pattern's known anti-pattern, and modules already receive `inputs`.
+
 - A nixos aspect that has a home-manager half wires it through `home-manager.sharedModules`:
 
   ```nix
@@ -78,12 +81,12 @@ A Nix flake that manages this user's Nix configuration, structured after the [de
 
 The hand-rolled pattern above needs only `flake-parts` and `import-tree` (already inputs). As the configuration grows, reach for denful tooling when it becomes limiting — do not add these preemptively:
 
-| Project | What it does |
-| --- | --- |
-| [den](https://github.com/denful/den) | Context-aware configuration framework with declarative pipelines and schemas for host and user configuration |
-| [flake-aspects](https://github.com/denful/flake-aspects) | Zero-dependency aspect composition; transposes `aspect.class` into standard Nix module layouts |
-| [flake-file](https://github.com/denful/flake-file) | Generates `flake.nix` from typed Nix modules |
-| [dendrix](https://github.com/denful/dendrix) | Community-driven distribution of dendritic configurations |
+| Project                                                  | What it does                                                                                                 |
+| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| [den](https://github.com/denful/den)                     | Context-aware configuration framework with declarative pipelines and schemas for host and user configuration |
+| [flake-aspects](https://github.com/denful/flake-aspects) | Zero-dependency aspect composition; transposes `aspect.class` into standard Nix module layouts               |
+| [flake-file](https://github.com/denful/flake-file)       | Generates `flake.nix` from typed Nix modules                                                                 |
+| [dendrix](https://github.com/denful/dendrix)             | Community-driven distribution of dendritic configurations                                                    |
 
 ### References
 
@@ -103,18 +106,18 @@ All commit messages MUST follow the [Conventional Commits](https://www.conventio
 
 Allowed types:
 
-| Type | Purpose |
-| --- | --- |
-| `feat` | New configuration feature or module |
-| `fix` | Bug fix in the configuration |
-| `chore` | Maintenance (lock file updates, repo housekeeping) |
-| `docs` | Documentation changes |
-| `refactor` | Restructuring without behavior change |
-| `style` | Formatting changes |
-| `test` | Adding or changing checks/tests |
-| `perf` | Performance-related changes |
-| `build` | Build system or flake input changes |
-| `ci` | CI configuration changes |
+| Type       | Purpose                                            |
+| ---------- | -------------------------------------------------- |
+| `feat`     | New configuration feature or module                |
+| `fix`      | Bug fix in the configuration                       |
+| `chore`    | Maintenance (lock file updates, repo housekeeping) |
+| `docs`     | Documentation changes                              |
+| `refactor` | Restructuring without behavior change              |
+| `style`    | Formatting changes                                 |
+| `test`     | Adding or changing checks/tests                    |
+| `perf`     | Performance-related changes                        |
+| `build`    | Build system or flake input changes                |
+| `ci`       | CI configuration changes                           |
 
 Examples from this repo's history:
 
@@ -139,7 +142,8 @@ A conventional commit message has the following structure:
 [optional footer]
 ```
 
-1. **Type** (required): A lowercase keyword indicating the *nature* of the change. Allowed types in this repo:
+1. **Type** (required): A lowercase keyword indicating the _nature_ of the change. Allowed types in this repo:
+
    - `feat`: New features or enhancements
    - `fix`: Bug fixes
    - `docs`: Documentation changes
@@ -151,13 +155,14 @@ A conventional commit message has the following structure:
    - `build`: Build system or external dependency changes
    - `ci`: CI/CD pipeline changes
 
-2. **Scope** (optional): A hyphen-separated lowercase identifier (e.g., `home-manager`, `nixos`) added in parentheses after the type if the change affects a specific part of the system. Omit if the change is general.
+1. **Scope** (optional): A hyphen-separated lowercase identifier (e.g., `home-manager`, `nixos`) added in parentheses after the type if the change affects a specific part of the system. Omit if the change is general.
 
-3. **Description** (required): A concise, lowercase, imperative sentence summarising the change. Start with a verb (e.g., "add", "fix", "update"). Max 72 characters.
+1. **Description** (required): A concise, lowercase, imperative sentence summarising the change. Start with a verb (e.g., "add", "fix", "update"). Max 72 characters.
 
-4. **Body** (optional): A detailed explanation of *why* the change was made, ideally in a new paragraph starting with "Why:". Use bullet points for lists. Wrap at 72 characters.
+1. **Body** (optional): A detailed explanation of _why_ the change was made, ideally in a new paragraph starting with "Why:". Use bullet points for lists. Wrap at 72 characters.
 
-5. **Footer** (optional): Metadata like:
+1. **Footer** (optional): Metadata like:
+
    - `Closes: #123` or `Fixes: #123` to link issues
    - `BREAKING CHANGE: description` for backwards-incompatible changes (forces a major version bump)
    - `Co-authored-by: Name <email>` for collaborative commits
@@ -212,7 +217,6 @@ refactor: some changes. (trailing punctuation)
 - Explicitly flags breaking changes for consumers of the configuration.
 
 For the full specification, see [conventionalcommits.org](https://www.conventionalcommits.org/en/v1.0.0/).
-
 
 ### Git hygiene
 
