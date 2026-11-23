@@ -1,14 +1,24 @@
 {
   description = "Nix configuration";
 
-nixConfig = {
-  # Keep cache.nixos.org and add the Nix community cache for this flake.
-  extra-substituters = [ "https://nix-community.cachix.org" ];
-  # Nix may prompt before trusting these flake-local settings.
-  extra-trusted-public-keys = [
-    "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-  ];
-};
+  nixConfig = {
+    # substituters = [
+    #   "https://cache.xinux.uz?priority=30"
+    #   "https://nix-community.cachix.org?priority=50"
+    #   "https://numtide.cachix.org?priority=50"
+    #   "https://cache.nixos.org?priority=40"
+    # ];
+    # trusted-public-keys = [
+    #   "cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0="
+    #   "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    #   "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+    #   "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    # ];
+    # experimental-features = [
+    #   "nix-command"
+    #   "flakes"
+    # ];
+  };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
