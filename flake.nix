@@ -21,14 +21,28 @@
   };
 
   inputs = {
+    ###############
+    # nixpkgs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-lib.url = "github:nix-community/nixpkgs.lib";
+
+    ###############
+    # flake-parts
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs-lib";
     };
+
+    ###############
+    # import-tree
     import-tree.url = "github:denful/import-tree";
-    treefmt-nix.url = "github:numtide/treefmt-nix";
+
+    ###############
+    # treefmt-nix
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
