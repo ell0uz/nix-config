@@ -3,10 +3,10 @@ let
   inherit (inputs) nixpkgs home-manager determinate;
 
   # All modules for NixOS (auto-imported via import-tree)
-  nixosModules = builtins.attrValues (config.flake.modules.nixos or {});
+  nixosModules = builtins.attrValues (config.flake.modules.nixos or { });
 
   # All modules for Home Manager (auto-imported via import-tree)
-  homeManagerModules = builtins.attrValues (config.flake.modules.homeManager or {});
+  homeManagerModules = builtins.attrValues (config.flake.modules.homeManager or { });
 
   # NixOS module that defines dendrix options for host-specific configuration
   dendrixOptionsModule = { lib, ... }: {
