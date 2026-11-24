@@ -7,7 +7,7 @@
         "https://nix-community.cachix.org?priority=50"
         "https://numtide.cachix.org?priority=50"
         "https://cache.nixos.org?priority=40"
-        "https://ell-nixos-config.cachix.org?priority=50"
+        "https://ell-nixos-config.cachix.org?priority=31"
       ];
       trusted-public-keys = [
         "cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0="
