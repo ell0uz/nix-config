@@ -29,6 +29,10 @@ jobs:
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
       - name: "Build NixOS config ❄️"
+        shell: bash
         run: |
+          set -euo pipefail
           nix build .#nixosConfigurations.winpooter.config.system.build.toplevel
-          cachix push ell-nixos-config $(readlink result)
+          if [ -e result ]; then
+            cachix push ell-nixos-config $(readlink result)
+          fi
