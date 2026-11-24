@@ -71,7 +71,7 @@ let
           # Home-manager configuration with dynamic username
           {
             home-manager = commonHomeManagerSettings // {
-              users.${dendrixConfig.userName} = { pkgs, ... }: {
+              users.${dendrixConfig.userName} = {
                 home.stateVersion = dendrixConfig.homeStateVersion;
                 home.username = dendrixConfig.userName;
               };
