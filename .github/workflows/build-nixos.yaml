@@ -22,12 +22,13 @@ jobs:
       - name: "Install Nix ❄️"
         uses: DeterminateSystems/determinate-nix-action@v3
 
-      - name: "Install Cachix ❄️"
+      - name: "Setup Cachix"
         uses: cachix/cachix-action@v17
         with:
           name: ell-nixos-config
-          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
       - name: "Build NixOS config ❄️"
         run: |
           nix build .#nixosConfigurations.winpooter.config.system.build.toplevel
+          cachix push ell-nixos-config $(readlink result)
