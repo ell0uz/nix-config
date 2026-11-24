@@ -93,8 +93,7 @@ in
         homeStateVersion = "26.05";
       };
     };
-    # flexbox = mkHost {
-    #   hostname = "qwq";
+    # qwq = mkHost {
     #   hostModule = ./_hosts/qwq;
     #   dendrixConfig = {
     #     hostname = "qwq";
