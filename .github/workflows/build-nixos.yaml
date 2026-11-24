@@ -32,7 +32,7 @@ jobs:
       - name: "Install Cachix ❄️"
         uses: cachix/cachix-action@v17
         with:
-          name: workflow-nixos-config
+          name: ell-nixos-config
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       # - name: Setup tmate session
