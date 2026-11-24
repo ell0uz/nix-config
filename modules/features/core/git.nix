@@ -10,7 +10,7 @@
       init.defaultBranch = "main";
       pull.rebase = true;
     };
-    programs.git.packages = with pkgs; [ git-lfs ];
+    environment.systemPackages = with pkgs; [ git-lfs ];
   };
 
   flake.modules.homeManager.git = { pkgs, ... }: {
