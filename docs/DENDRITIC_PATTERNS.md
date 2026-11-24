@@ -5,7 +5,7 @@
 ## How This Repo Wires It
 
 - [flake.nix](../flake.nix) calls `mkFlake` with `inputs.import-tree ./modules` — every `.nix` file under `modules/` is loaded automatically as a flake-parts module. Keep `flake.nix` minimal: dependency manifest and entrypoint only, with logic in modules.
-- [modules/systems.nix](../modules/systems.nix) sets the supported `systems`. Nothing else in the repo is special — the structure emerges from the aspect files.
+- [flake.nix](flake.nix) defines `systems` directly in `mkFlake`. Nothing else in the repo is special — the structure emerges from the aspect files.
 
 ## Aspects
 
@@ -25,13 +25,16 @@
 
 ## Hosts
 
-- Host modules are thin registries: a file defines `flake.nixosConfigurations.<name>` (or `flake.darwinConfigurations.<name>`) and imports aspects **by name** from `inputs.self.modules.<class>`, not by file path:
+- Host modules define `flake.nixosConfigurations.<name>` (or `flake.darwinConfigurations.<name>`) and import aspects via `config.flake.modules`:
 
   ```nix
   # modules/hosts.nix
-  { inputs, ... }: {
+  { config, inputs, lib, ... }:
+  let
+    nixosModules = builtins.attrValues (config.flake.modules.nixos or {});
+  in {
     flake.nixosConfigurations.my-host = inputs.nixpkgs.lib.nixosSystem {
-      modules = with inputs.self.modules.nixos; [
+      modules = with nixosModules; [
         ssh
         fonts
       ];
@@ -39,7 +42,7 @@
   }
   ```
 
-- Importing by name (rather than path) means files can be moved and reorganized without breaking references.
+- Importing via `config.flake.modules` avoids infinite recursion that would occur with `inputs.self.modules` (circular dependency).
 
 ## Sharing Values
 
@@ -53,10 +56,13 @@
   flake.modules.nixos.sway = {
     programs.sway.enable = true;
     home-manager.sharedModules = [
-      inputs.self.modules.homeManager.sway
+      # Import aspect by name via flake.modules
+      # (accessed in hosts.nix via config.flake.modules.homeManager)
     ];
   };
   ```
+
+- Aspects are auto-imported by import-tree, so references can use the module name directly when combined with `builtins.attrValues config.flake.modules.<class>` in hosts.nix.
 
 ---
 
