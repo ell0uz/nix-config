@@ -15,14 +15,14 @@ jobs:
   build-winpooter:
     runs-on: ubuntu-latest
     steps:
-      - name: Free Disk Space (Ubuntu)
-        uses: thiagokokada/free-disk-space@main
-        with:
-          tool-cache: true
-          usrmisc: true
-          usrlocal: true
-          opt: true
-          varcache: true
+      # - name: Free Disk Space (Ubuntu)
+      #   uses: thiagokokada/free-disk-space@main
+      #   with:
+      #     tool-cache: true
+      #     usrmisc: true
+      #     usrlocal: true
+      #     opt: true
+      #     varcache: true
 
       - uses: actions/checkout@v7
 
