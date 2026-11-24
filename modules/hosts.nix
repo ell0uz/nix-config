@@ -1,17 +1,12 @@
-{
-  config,
-  lib,
-  inputs,
-  ...
-}:
+{ inputs, ... }:
 let
   inherit (inputs) nixpkgs home-manager determinate;
 
   # All modules for NixOS (auto-imported via import-tree)
-  nixosModules = builtins.attrValues (config.flake.modules.nixos or { });
+  nixosModules = builtins.attrValues (inputs.self.outputs.libnixosModules or { });
 
   # All modules for Home Manager (auto-imported via import-tree)
-  homeManagerModules = builtins.attrValues (config.flake.modules.homeManager or { });
+  homeManagerModules = builtins.attrValues (inputs.self.outputs.libhomeManagerModules or { });
 
   # NixOS module that defines dendrix options for host-specific configuration
   dendrixOptionsModule = { lib, ... }: {
@@ -19,6 +14,11 @@ let
       hostname = lib.mkOption {
         type = lib.types.str;
         description = "Hostname of this machine";
+      };
+      userName = lib.mkOption {
+        type = lib.types.str;
+        description = "User name for the primary user";
+        default = "nixos";
       };
       stateVersion = lib.mkOption {
         type = lib.types.str;
@@ -49,17 +49,13 @@ let
 
   # Host generator function
   mkHost =
-    {
-      hostname,
-      hostModule,
-      dendrixConfig,
-      extraModules ? [ ],
+    { hostname
+    , hostModule
+    , dendrixConfig
+    , extraModules ? [ ]
     }:
     nixpkgs.lib.nixosSystem {
-      specialArgs = {
-        inherit inputs dendrixConfig;
-        dendrix = dendrixConfig;
-      };
+      specialArgs = { inherit inputs; };
       modules =
         commonNixosModules
         ++ nixosModules
@@ -72,19 +68,19 @@ let
             dendrix = dendrixConfig;
           }
 
-          # Home-manager configuration
+          # Home-manager configuration with dynamic username
           {
             home-manager = commonHomeManagerSettings // {
-              users.farlion = { pkgs, ... }: {
+              users.${dendrixConfig.userName} = { pkgs, ... }: {
                 home.stateVersion = dendrixConfig.homeStateVersion;
+                home.username = dendrixConfig.userName;
               };
             };
           }
         ]
         ++ extraModules;
     };
-in
-{
+in {
   # Host configurations - explicitly defined using mkHost
   flake.nixosConfigurations = {
     flexbox = mkHost {
@@ -92,6 +88,7 @@ in
       hostModule = ./_hosts/flexbox;
       dendrixConfig = {
         hostname = "flexbox";
+        userName = "farlion";
         stateVersion = "24.11";
         homeStateVersion = "24.11";
       };

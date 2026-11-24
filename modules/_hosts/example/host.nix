@@ -1,4 +1,4 @@
-{ dendrix, inputs, ... }: {
+{ config, inputs, ... }: {
   # Example host configuration
   # This file is in _hosts/_example/ so it's skipped by import-tree (due to _ prefix)
 
@@ -17,7 +17,7 @@
   # These are typed options defined in hosts.nix -> dendrixOptionsModule
 
   # Example: Set hostname in networking (though dendrix.hostname is available for reference)
-  # networking.hostName = dendrix.hostname;
+  # networking.hostName = config.dendrix.hostname;
 
   # Example: Conditional configuration based on state version
   # { config, lib, ... }: let
@@ -27,7 +27,7 @@
   # };
 
   # Example: Hardware configuration (extend dendrix options in hosts.nix if needed)
-  # hardware.nvidia.enable = dendrix.hasNvidia or false;
-  # hardware.amd.enable = dendrix.hasAmd or false;
-  # fileSystems."/" = { fsType = "btrfs"; } = dendrix.isBtrfs or false;
+  # hardware.nvidia.enable = config.dendrix.hasNvidia or false;
+  # hardware.amd.enable = config.dendrix.hasAmd or false;
+  # fileSystems."/" = { fsType = "btrfs"; } = config.dendrix.isBtrfs or false;
 }
