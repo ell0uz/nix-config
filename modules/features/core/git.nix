@@ -15,8 +15,12 @@
 
   flake.modules.homeManager.git = { pkgs, ... }: {
     programs.git.enable = true;
-    programs.git.userName = "ell0uz";
-    programs.git.userEmail = "ell@ell0.uz";
+    programs.git.settings = {
+      user = {
+        name = "ell0uz";
+        email = "ell@ell0.uz";
+      };
+    };
     programs.git.lfs.enable = true;
   };
 }
