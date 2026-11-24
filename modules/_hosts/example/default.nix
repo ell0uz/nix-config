@@ -1,4 +1,5 @@
-{ config, inputs, ... }: {
+{ inputs, ... }: {
+  # NOTE: Removed config from lambda pattern to remove dead code
   # Example host configuration
   # This file is in _hosts/example/ so it's skipped by import-tree (due to _ prefix)
 

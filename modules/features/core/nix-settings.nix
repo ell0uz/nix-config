@@ -1,5 +1,4 @@
 # Shared Nix configuration aspect
-{ inputs, lib, ... }:
 {
   flake.modules.nixos.nix-settings = {
     nix.settings = {

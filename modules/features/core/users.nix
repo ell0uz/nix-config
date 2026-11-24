@@ -1,11 +1,8 @@
 # User account aspect - creates primary user with wheel access
-{ inputs, lib, ... }:
 {
   flake.modules.nixos.users =
     {
       config,
-      lib,
-      pkgs,
       ...
     }:
     {

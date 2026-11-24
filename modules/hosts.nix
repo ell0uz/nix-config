@@ -50,7 +50,6 @@ let
   # Host generator function
   mkHost =
     {
-      hostname,
       hostModule,
       dendrixConfig,
       extraModules ? [ ],
