@@ -43,16 +43,17 @@ let
   commonHomeManagerSettings = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    backupFileExtension = "home-manager-backup";
+    backupFileExtension = "hm-backup";
     sharedModules = homeManagerModules;
   };
 
   # Host generator function
   mkHost =
-    { hostname
-    , hostModule
-    , dendrixConfig
-    , extraModules ? [ ]
+    {
+      hostname,
+      hostModule,
+      dendrixConfig,
+      extraModules ? [ ],
     }:
     nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs; };
@@ -80,18 +81,19 @@ let
         ]
         ++ extraModules;
     };
-in {
+in
+{
   # Host configurations - explicitly defined using mkHost
   flake.nixosConfigurations = {
-    flexbox = mkHost {
-      hostname = "flexbox";
-      hostModule = ./_hosts/flexbox;
-      dendrixConfig = {
-        hostname = "flexbox";
-        userName = "farlion";
-        stateVersion = "24.11";
-        homeStateVersion = "24.11";
-      };
-    };
+    # flexbox = mkHost {
+    #   hostname = "qwq";
+    #   hostModule = ./_hosts/qwq;
+    #   dendrixConfig = {
+    #     hostname = "qwq";
+    #     userName = "qwq";
+    #     stateVersion = "26.11";
+    #     homeStateVersion = "26.11";
+    #   };
+    # };
   };
 }
