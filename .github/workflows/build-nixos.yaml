@@ -1,0 +1,43 @@
+name: Build NixOS and upload to Cachix
+concurrency: build-nixos
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "README.md"
+      - "NOTES.md"
+      - ".gitignore"
+
+jobs:
+  build-winpooter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Free Disk Space (Ubuntu)
+        uses: thiagokokada/free-disk-space@main
+        with:
+          tool-cache: true
+          usrmisc: true
+          usrlocal: true
+          opt: true
+          varcache: true
+
+      - uses: actions/checkout@v7
+
+      - name: "Install Nix ❄️"
+        uses: DeterminateSystems/determinate-nix-action@v3
+
+      - name: "Install Cachix ❄️"
+        uses: cachix/cachix-action@v17
+        with:
+          name: workflow-nixos-config
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
+
+      - name: "Build NixOS config ❄️"
+        run: |
+          nix build .#nixosConfigurations.winpooter.config.system.build.toplevel
