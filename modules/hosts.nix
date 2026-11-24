@@ -85,6 +85,16 @@ in
 {
   # Host configurations - explicitly defined using mkHost
   flake.nixosConfigurations = {
+    winpooter = mkHost {
+      hostname = "winpooter";
+      hostModule = ./_hosts/winpooter;
+      dendrixConfig = {
+        hostname = "winpooter";
+        userName = "ell";
+        stateVersion = "26.05";
+        homeStateVersion = "26.05";
+      };
+    };
     # flexbox = mkHost {
     #   hostname = "qwq";
     #   hostModule = ./_hosts/qwq;

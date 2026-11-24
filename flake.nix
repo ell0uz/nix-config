@@ -61,6 +61,13 @@
       url = "github:nix-community/nur";
       inputs.flake-parts.follows = "flake-parts";
     };
+
+    ###############
+    # nixos-wsl
+    nixos-wsl = {
+      url = "github:nix-community/nixos-wsl";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

@@ -1,6 +1,6 @@
 { config, inputs, ... }: {
   # Example host configuration
-  # This file is in _hosts/_example/ so it's skipped by import-tree (due to _ prefix)
+  # This file is in _hosts/example/ so it's skipped by import-tree (due to _ prefix)
 
   # Import features (modules/aspects) by name from inputs.self.modules.<class>
   imports = [
