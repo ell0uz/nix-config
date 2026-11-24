@@ -3,10 +3,10 @@ let
   inherit (inputs) nixpkgs home-manager determinate;
 
   # All modules for NixOS (auto-imported via import-tree)
-  nixosModules = builtins.attrValues (inputs.self.outputs.libnixosModules or { });
+  nixosModules = builtins.attrValues config.flake.modules.nixos or {};
 
   # All modules for Home Manager (auto-imported via import-tree)
-  homeManagerModules = builtins.attrValues (inputs.self.outputs.libhomeManagerModules or { });
+  homeManagerModules = builtins.attrValues config.flake.modules.homeManager or {};
 
   # NixOS module that defines dendrix options for host-specific configuration
   dendrixOptionsModule = { lib, ... }: {
@@ -71,7 +71,7 @@ let
           # Home-manager configuration with dynamic username
           {
             home-manager = commonHomeManagerSettings // {
-              users.${dendrixConfig.userName} = {
+              users.${dendrixConfig.userName} = { pkgs, ... }: {
                 home.stateVersion = dendrixConfig.homeStateVersion;
                 home.username = dendrixConfig.userName;
               };
@@ -85,7 +85,6 @@ in
   # Host configurations - explicitly defined using mkHost
   flake.nixosConfigurations = {
     winpooter = mkHost {
-      hostname = "winpooter";
       hostModule = ./_hosts/winpooter;
       dendrixConfig = {
         hostname = "winpooter";
