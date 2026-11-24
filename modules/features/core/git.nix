@@ -10,14 +10,13 @@
       init.defaultBranch = "main";
       pull.rebase = true;
     };
-    environment.systemPackages = with pkgs; [ git-lfs ];
+    programs.git.lfs.enable = true;
   };
 
   flake.modules.homeManager.git = { pkgs, ... }: {
     programs.git.enable = true;
-    programs.git.user = {
-      name = "ell0uz";
-      email = "ell@ell0.uz";
-    };
+    programs.git.userName = "ell0uz";
+    programs.git.userEmail = "ell@ell0.uz";
+    programs.git.lfs.enable = true;
   };
 }
