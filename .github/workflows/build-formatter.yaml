@@ -9,7 +9,6 @@ on:
     paths:
       - ".github/workflows/build-formatter.yaml"
       - "modules/formatter.nix"
-      - "flake.nix"
 
 jobs:
   build-formatter:
