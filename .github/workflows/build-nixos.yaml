@@ -11,12 +11,8 @@ on:
       - "flake.nix"
       - "flake.lock"
       - ".github/workflows/build-nixos.yaml"
-    paths-ignore:
-      - ".**"
-      - "README.md"
-      - "LICENSE.md"
-      - "modules/formatter.nix"
-      - "modules/devshell.nix"
+      - "!modules/formatter.nix"
+      - "!modules/devshell.nix"
 
 jobs:
   build-winpooter:
