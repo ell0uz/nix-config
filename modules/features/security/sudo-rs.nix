@@ -5,11 +5,16 @@
 
     security.sudo-rs = {
       enable = true;
-      extraRules = [
+      # Extra rules for WSL
+      extraRules = lib.mkIf config.dendrix.isWSL [
         {
           groups = [ "wheel" ];
-          commands = [ "ALL" ];
-          options = [ "NOPASSWD" ];
+          commands = [
+            {
+              command = "ALL";
+              options = [ "NOPASSWD" ];
+            }
+          ];
         }
       ];
     };
