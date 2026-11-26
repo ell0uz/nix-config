@@ -12,7 +12,7 @@
             enable = true;
             package = pkgs.nixd;
           };
-        }:
+        };
       };
     };
   };
