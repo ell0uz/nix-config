@@ -1,6 +1,6 @@
 { config, inputs, ... }:
 let
-  inherit (inputs) nixpkgs home-manager determinate;
+  inherit (inputs) nixpkgs home-manager determinate nur rust-overlay;
 
   # All modules for NixOS (auto-imported via import-tree)
   nixosModules = builtins.attrValues (config.flake.modules.nixos or { });
@@ -66,6 +66,14 @@ let
           # Set dendrix options
           {
             dendrix = dendrixConfig;
+          }
+
+          # Overlays
+          {
+            nixpkgs.overlays = [
+              rust-overlay.overlay
+              nur.overlays.default
+            ];
           }
 
           # Home-manager configuration with dynamic username
