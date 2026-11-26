@@ -63,7 +63,7 @@
     # flake-compat
     flake-compat = {
       url = "github:edolstra/flake-compat";
-      flakes = false;
+      flake = false;
     };
 
     ###############
