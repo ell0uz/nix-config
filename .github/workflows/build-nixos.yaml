@@ -36,7 +36,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          nix build .#nixosConfigurations.winpooter.config.system.build.toplevel
+          nix build .#nixosConfigurations.winpooter.config.system.build.toplevel --show-trace
           if [ -e result ]; then
             cachix push ell-nixos-config $(readlink result)
           fi
