@@ -9,7 +9,6 @@ on:
     paths:
       - ".github/workflows/build-devshell.yaml"
       - "modules/devshell.nix"
-      - "flake.nix"
 
 jobs:
   build-devshell:
