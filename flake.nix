@@ -91,14 +91,10 @@
     };
 
     ###############
-    # devenv
+    # devshell
     devenv = {
-      url = "github:cachix/devenv";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        flake-compat.follows = "flake-compat";
-        rust-overlay.follows = "rust-overlay";
-      };
+      url = "github:numtide/devshell";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     ###############
