@@ -10,6 +10,7 @@
         packages = with pkgs; [
           statix
           deadnix
+          just
         ];
       };
     };
