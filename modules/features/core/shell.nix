@@ -1,6 +1,6 @@
 let
   presets = [
-    "catpuccin_mocha"
+    "catpuccin-mocha"
   ];
 in
 {
