@@ -1,6 +1,6 @@
 let
   presets = [
-    "catpuccin-powerline"
+    "catppuccin-powerline"
   ];
 in
 {
