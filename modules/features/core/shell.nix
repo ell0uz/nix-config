@@ -1,3 +1,8 @@
+let
+  presets = [
+    "catpuccin_mocha"
+  ];
+in
 {
   flake.modules.nixos.shell = {
     # Use fish for default shell
@@ -7,6 +12,7 @@
         enable = true;
         # Works best with fish
         transientPrompt.enable = true;
+        inherit presets;
       };
     };
   };
@@ -18,6 +24,7 @@
         enable = true;
         # Works best with fish
         enableTransience = true;
+        inherit presets;
       };
     };
   };
