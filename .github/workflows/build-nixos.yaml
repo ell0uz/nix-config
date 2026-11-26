@@ -40,7 +40,6 @@ jobs:
             cachix push ell-nixos-config $(readlink result)
           fi
   build-umbreon:
-    needs: [build-winpooter]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
