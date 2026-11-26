@@ -1,0 +1,38 @@
+name: Build Flake Developer Environment and upload to Cachix
+concurrency: build-devenv
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/build-devenv.yaml"
+      - "modules/devenv.nix"
+      - "flake.nix"
+
+jobs:
+  build-devenv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: wimpysworld/nothing-but-nix@main
+
+      - name: "Install Nix ❄️"
+        uses: DeterminateSystems/determinate-nix-action@v3
+
+      - name: "Setup Cachix"
+        uses: cachix/cachix-action@v17
+        with:
+          name: ell-nixos-config
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: "Build Flake Developer Environment ❄️"
+        shell: bash
+        run: |
+          set -euo pipefail
+          nix build .#devShells.x86_64-linux.default
+          if [ -e result ]; then
+            cachix push ell-nixos-config $(readlink result)
+          fi
