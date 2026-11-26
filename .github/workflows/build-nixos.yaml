@@ -7,7 +7,7 @@ on:
     branches:
       - main
     paths-ignore:
-      - ".*"
+      - ".**"
       - "README.md"
       - "LICENSE.md"
       - "modules/formatter.nix"
