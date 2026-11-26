@@ -17,3 +17,6 @@ result-*
 
 # Pre-commit hooks
 /.pre-commit-config.yaml
+
+# VM Builds
+*.qcow2
