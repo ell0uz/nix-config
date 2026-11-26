@@ -37,6 +37,7 @@ let
     determinate.nixosModules.default
     nixpkgs.nixosModules.notDetected
     home-manager.nixosModules.home-manager
+    nur.modules.nixos.default
   ];
 
   # Common Home Manager settings
@@ -72,7 +73,6 @@ let
           {
             nixpkgs.overlays = [
               rust-overlay.overlay
-              nur.overlays.default
             ];
           }
 
