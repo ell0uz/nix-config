@@ -15,7 +15,7 @@
         isNormalUser = true;
         group = "users";
         extraGroups = [ "wheel" ];
-        shell = lib.mkIf config.programs.fish pkgs.fish;
+        shell = lib.mkIf config.programs.fish.enable pkgs.fish;
         # TODO: Learn about nixos-secrets to later put hashedPassword here
         initialPassword = "zero";
       };
