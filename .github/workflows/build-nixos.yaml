@@ -7,9 +7,13 @@ on:
     branches:
       - main
     paths-ignore:
+      - ".github/workflows/build-formatter.yaml"
       - "README.md"
-      - "NOTES.md"
+      - "LICENSE.md"
       - ".gitignore"
+      - ".gitattributes"
+      - ".editoroconfig"
+      - "modules/formatter.nix"
 
 jobs:
   build-winpooter:
