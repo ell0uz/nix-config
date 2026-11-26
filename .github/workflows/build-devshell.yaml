@@ -32,7 +32,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          nix build .#devShell.x86_64-linux --show-trace
+          nix build .#devShells.x86_64-linux.default --show-trace
           if [ -e result ]; then
             cachix push ell-nixos-config $(readlink result)
           fi
