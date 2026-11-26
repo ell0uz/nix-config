@@ -6,6 +6,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "modules/**"
+      - "flake.nix"
+      - "flake.lock"
+      - ".github/workflows/build-nixos.yaml"
     paths-ignore:
       - ".**"
       - "README.md"
