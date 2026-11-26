@@ -1,6 +1,6 @@
 # Git configuration aspect
 {
-  flake.modules.nixos.git = { pkgs, ... }: {
+  flake.modules.nixos.git = {
     programs.git = {
       enable = true;
       config = {
@@ -15,7 +15,7 @@
     };
   };
 
-  flake.modules.homeManager.git = { pkgs, ... }: {
+  flake.modules.homeManager.git = {
     programs.git = {
       enable = true;
       settings = {
