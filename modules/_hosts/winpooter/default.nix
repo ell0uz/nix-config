@@ -12,7 +12,7 @@
 
   wsl.enable = true;
   wsl.defaultUser = config.dendrix.userName;
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs.hostPlatform = config.dendrix.system;
   networking.hostName = config.dendrix.hostname;
   system.stateVersion = config.dendrix.stateVersion;
 

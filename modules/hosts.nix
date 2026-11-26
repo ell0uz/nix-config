@@ -10,8 +10,21 @@ in
       dendrixConfig = {
         hostname = "winpooter";
         userName = "ell";
+        isWSL = true;
+        system = "x86_64-linux";
         stateVersion = "26.05";
         homeStateVersion = "26.05";
+      };
+    };
+    umbreon = mkHost {
+      hostModule = ./_hosts/umbreon;
+      dendrixConfig = {
+        hostname = "umbreon";
+        userName = "ell";
+        hasNvidia = true;
+        system = "x86_64-linux";
+        stateVersion = "26.11";
+        homeStateVersion = "26.11";
       };
     };
     # qwq = mkHost {
