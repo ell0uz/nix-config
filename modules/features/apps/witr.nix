@@ -1,6 +1,6 @@
 # Why is this running?
-{...}: {
-  flake.modules.homeManager.witr = {pkgs, ...}: {
-    home.packages = [pkgs.witr];
+_: {
+  flake.modules.homeManager.witr = { pkgs, ... }: {
+    home.packages = [ pkgs.witr ];
   };
 }

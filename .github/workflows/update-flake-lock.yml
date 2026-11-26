@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - 'flake.nix'
+      - "flake.nix"
   schedule:
     - cron: "0 0 * * 0" # Weekly on Sundays at midnight UTC
 

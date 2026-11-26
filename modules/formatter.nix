@@ -4,14 +4,16 @@
 
   perSystem.treefmt = { pkgs, ... }: {
     projectRootFile = "flake.nix";
-    programs.nixfmt={
-      enable = true;
-      package = pkgs.nixfmt-rs;
+    programs = {
+      nixfmt = {
+        enable = true;
+        package = pkgs.nixfmt-rs;
+      };
+      mdformat.enable = true;
+      # prettier covers yaml + json (yamlfmt is not in nixpkgs)
+      prettier.enable = true;
+      shfmt.enable = true;
     };
-    programs.mdformat.enable = true;
-    # prettier covers yaml + json (yamlfmt is not in nixpkgs)
-    programs.prettier.enable = true;
-    programs.shfmt.enable = true;
     settings.excludes = [ "flake.lock" ];
   };
 }

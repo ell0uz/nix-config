@@ -1,26 +1,30 @@
 # Git configuration aspect
 {
   flake.modules.nixos.git = { pkgs, ... }: {
-    programs.git.enable = true;
-    programs.git.config = {
-      user = {
-        name = "ell0uz";
-        email = "ell@ell0.uz";
+    programs.git = {
+      enable = true;
+      config = {
+        user = {
+          name = "ell0uz";
+          email = "ell@ell0.uz";
+        };
+        init.defaultBranch = "main";
+        pull.rebase = true;
       };
-      init.defaultBranch = "main";
-      pull.rebase = true;
+      lfs.enable = true;
     };
-    programs.git.lfs.enable = true;
   };
 
   flake.modules.homeManager.git = { pkgs, ... }: {
-    programs.git.enable = true;
-    programs.git.settings = {
-      user = {
-        name = "ell0uz";
-        email = "ell@ell0.uz";
+    programs.git = {
+      enable = true;
+      settings = {
+        user = {
+          name = "ell0uz";
+          email = "ell@ell0.uz";
+        };
       };
+      lfs.enable = true;
     };
-    programs.git.lfs.enable = true;
   };
 }
