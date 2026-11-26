@@ -66,7 +66,10 @@
     # nixos-wsl
     nixos-wsl = {
       url = "github:nix-community/nixos-wsl";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
+      };
     };
 
     ###############
@@ -74,6 +77,34 @@
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ###############
+    # devenv
+    devenv = {
+      url = "github:cachix/devenv";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        flake-compat.follows = "flake-compat";
+        rust-overlay.follows = "rust-overlay";
+      };
+    };
+
+    ###############
+    # rust-overlay
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    ###############
+    # git-hooks
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "flake-compat";
+      };
     };
   };
 
