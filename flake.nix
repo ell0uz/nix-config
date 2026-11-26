@@ -60,6 +60,13 @@
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
     ###############
+    # flake-compat
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flakes = false;
+    };
+
+    ###############
     # nur
     nur = {
       url = "github:nix-community/nur";
