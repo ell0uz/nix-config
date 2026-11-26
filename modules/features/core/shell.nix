@@ -17,7 +17,7 @@
       starship = {
         enable = true;
         # Works best with fish
-        transientPrompt.enable = true;
+        enableTransience = true;
       };
     };
   };
