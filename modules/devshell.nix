@@ -10,7 +10,9 @@
         packages = with pkgs; [
           statix
           deadnix
+          vulnix
           just
+          cachix
         ];
       };
     };
