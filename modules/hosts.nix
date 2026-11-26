@@ -72,7 +72,7 @@ let
           # Overlays
           {
             nixpkgs.overlays = [
-              rust-overlay.overlay
+              rust-overlay.overlays.default
             ];
           }
 
