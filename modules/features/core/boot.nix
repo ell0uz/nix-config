@@ -1,6 +1,5 @@
-{ config, lib, ... }:
-lib.mkIf (!config.dendrix.isWSL) {
-  flake.modules.nixos.boot = {
+{
+  flake.modules.nixos.boot = { config, lib, ... }: lib.mkIf (!config.dendrix.isWSL) {
     boot = {
       loader = {
         systemd-boot = {
