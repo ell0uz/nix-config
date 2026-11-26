@@ -3,9 +3,9 @@
     inputs.devenv.flakeModule
   ];
 
-  perSystem.devenv.shells = { pkgs, ... }: {
+  perSystem.devenv.shells = {
     # create devShells.default
-    default = {
+    default = { pkgs, ... }: {
       languages.nix = {
         enable = true;
         lsp = {
