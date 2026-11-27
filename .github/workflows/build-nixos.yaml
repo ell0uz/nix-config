@@ -63,3 +63,27 @@ jobs:
           if [ -e result ]; then
             cachix push ell-nixos-config $(readlink result)
           fi
+  build-umbreon-vm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: wimpysworld/nothing-but-nix@main
+
+      - name: "Install Nix ❄️"
+        uses: DeterminateSystems/determinate-nix-action@v3
+
+      - name: "Setup Cachix"
+        uses: cachix/cachix-action@v17
+        with:
+          name: ell-nixos-config
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: "Build NixOS config ❄️"
+        shell: bash
+        run: |
+          set -euo pipefail
+          nix build .#nixosConfigurations.umbreon.config.system.build.vm --show-trace
+          if [ -e result ]; then
+            cachix push ell-nixos-config $(readlink result)
+          fi
