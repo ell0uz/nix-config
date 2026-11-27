@@ -1,7 +1,7 @@
 {
   flake.modules.nixos.power = {
     # This will save you money and possibly your life:
-    services = {
+    services = { config, lib, ...}: lib.mkIf (!config.dendrix.isWSL) {
       thermald.enable = true;
 
       logind = {
