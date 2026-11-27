@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.modules.power = {
+  flake.modules.nixos.power = {
     # This will save you money and possibly your life:
     services = {
       thermald.enable = true;
