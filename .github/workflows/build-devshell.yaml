@@ -27,9 +27,6 @@ jobs:
           name: ell-nixos-config
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
-      - name: "Hestia"
-        uses: Mic92/hestia@v3
-
       - name: "Build Developer Shell ❄️"
         shell: bash
         run: |
