@@ -113,6 +113,10 @@
         flake-compat.follows = "flake-compat";
       };
     };
+
+    ragenix = {
+      url = "github:yaxitech/ragenix";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);

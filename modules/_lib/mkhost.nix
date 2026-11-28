@@ -6,7 +6,7 @@ let
     determinate
     nur
     rust-overlay
-    sops-nix
+    ragenix
     ;
 
   # All modules for NixOS (auto-imported via import-tree)
@@ -25,6 +25,7 @@ let
     nixpkgs.nixosModules.notDetected
     home-manager.nixosModules.home-manager
     nur.modules.nixos.default
+    ragenix.nixosModules.default
   ];
 
   # Common Home Manager settings
