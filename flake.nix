@@ -114,8 +114,11 @@
       };
     };
 
-    ragenix = {
-      url = "github:yaxitech/ragenix";
+
+    ###############
+    # agenix
+    agenix = {
+      url = "github:ryantm/agenix";
     };
   };
 
