@@ -1,13 +1,9 @@
 # WSL host configuration - aspects auto-included from modules/features/
 {
   config,
-  inputs,
   ...
 }:
 {
-  imports = [
-    inputs.nixos-wsl.nixosModules.default
-  ];
 
   wsl.enable = true;
   wsl.defaultUser = config.dendrix.userName;

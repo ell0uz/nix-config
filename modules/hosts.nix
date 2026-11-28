@@ -15,6 +15,9 @@ in
         stateVersion = "26.05";
         homeStateVersion = "26.05";
       };
+      extraModules = [
+        inputs.nixos-wsl.nixosModules.default
+      ];
     };
     umbreon = mkHost {
       hostModule = ./_hosts/umbreon;
