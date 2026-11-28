@@ -8,6 +8,7 @@
       ...
     }:
     {
+      users.mutableUsers = false;
       # Set default root user
       users.users.root.hashedPasswordFile = config.age.secrets.user-password.path or null;
       # User is mandatory - create with dendrix username option
