@@ -7,8 +7,8 @@
     };
 
   flake.modules.homeManager.bluetuith =
-    { config, lib, ... }:
-    lib.mkIf (!config.dendrix.isWSL) {
+    { osConfig, lib, ... }:
+    lib.mkIf (!osConfig.dendrix.isWSL) {
       programs.bluetuith.enable = true;
     };
 }
