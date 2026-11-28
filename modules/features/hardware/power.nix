@@ -1,29 +1,31 @@
 {
-  flake.modules.nixos.power = { config, lib, ...}: lib.mkIf (!config.dendrix.isWSL) {
-    # This will save you money and possibly your life:
-    services = {
-      thermald.enable = true;
+  flake.modules.nixos.power =
+    { config, lib, ... }:
+    lib.mkIf (!config.dendrix.isWSL) {
+      # This will save you money and possibly your life:
+      services = {
+        thermald.enable = true;
 
-      logind = {
-        settings = {
-          Login = {
-            HandleLidSwitch = "suspend-then-hibernate";
-            HandleLidSwitchDocked = "lock";
+        logind = {
+          settings = {
+            Login = {
+              HandleLidSwitch = "suspend-then-hibernate";
+              HandleLidSwitchDocked = "lock";
+            };
           };
         };
+
+        auto-cpufreq = {
+          enable = true;
+          settings = { };
+        };
+
+        # Dbus Service provding historical battery stats, access to external device batteries... etc.
+        upower.enable = true;
       };
 
-      auto-cpufreq = {
-        enable = true;
-        settings = { };
+      systemd.sleep.settings.Sleep = {
+        HibernateDelaySec = "1h";
       };
-
-      # Dbus Service provding historical battery stats, access to external device batteries... etc.
-      upower.enable = true;
     };
-
-    systemd.sleep.settings.Sleep = {
-      HibernateDelaySec = "1h";
-    };
-  };
 }
