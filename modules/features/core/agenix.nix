@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  flake.modules.nixos.agenix = { config, ... }: {
-    environment.systemPackages = [ inputs.agenix.packages.${config.dendrix.system}.default ];
+  flake.modules.nixos.agenix = { pkgs, ... }: {
+    environment.systemPackages = [ inputs.agenix.packages.${pkgs.system}.default ];
   };
 }
