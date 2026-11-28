@@ -6,13 +6,14 @@ let
     determinate
     nur
     rust-overlay
+    sops-nix
     ;
 
   # All modules for NixOS (auto-imported via import-tree)
-  nixosModules = builtins.attrValues (config.flake.modules.nixos or { });
+  nixosModules = builtins.attrValues config.flake.modules.nixos;
 
   # All modules for Home Manager (auto-imported via import-tree)
-  homeManagerModules = builtins.attrValues (config.flake.modules.homeManager or { });
+  homeManagerModules = builtins.attrValues config.flake.modules.homeManager;
 
   # NixOS module that defines dendrix options for host-specific configuration
   dendrixOptionsModule = import ./dendrix-options.nix;
