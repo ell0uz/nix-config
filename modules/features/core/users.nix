@@ -9,15 +9,14 @@
     }:
     {
       # Set default root user
-      users.users.root.initialPassword = "zero";
+      users.users.root.hashedPasswordFile = config.age.secrets.user-password.path or null;
       # User is mandatory - create with dendrix username option
       users.users.${config.dendrix.userName} = {
         isNormalUser = true;
         group = "users";
         extraGroups = [ "wheel" ];
         shell = lib.mkIf config.programs.fish.enable pkgs.fish;
-        # TODO: Learn about nixos-secrets to later put hashedPassword here
-        initialPassword = "zero";
+        hashedPasswordFile = config.age.secrets.user-password.path or null;
       };
     };
 }
