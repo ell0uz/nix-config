@@ -1,6 +1,7 @@
 # Git configuration aspect
 {
-  flake.modules.homeManager.git = {
+  flake.modules.homeManager.git = { pkgs, ... }: {
+    home.packages = [ pkgs.gh ];
     programs.git = {
       enable = true;
       settings = {
